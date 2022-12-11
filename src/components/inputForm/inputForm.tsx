@@ -17,6 +17,8 @@ import {
   Button,
 } from "./inputFormStyles";
 import { setCurrentPage } from "../../store/dataPagination/paginationSlice";
+import { ISimulationInfo } from "../../models/gameSimulator";
+import { toast } from "react-toastify";
 
 const InputForm = () => {
   const dispatch = useAppDispatch();
@@ -27,18 +29,26 @@ const InputForm = () => {
   const submitForm = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    dispatch(setShowChart(false));
-    dispatch(setShowDetails(false));
-    dispatch(setLoading(true));
+    try {
+      dispatch(setShowChart(false));
+      dispatch(setShowDetails(false));
+      dispatch(setLoading(true));
 
-    const simulationList = await MontyHallSimulator.simulate(
-      numberOfSimulations,
-      changeTheChoise
-    );
-    dispatch(setSimulations(simulationList));
-    dispatch(setLoading(false));
-    dispatch(setCurrentPage(1));
-    dispatch(setShowChart(true));
+      const simulationList = await MontyHallSimulator.simulate(
+        numberOfSimulations,
+        changeTheChoise
+      );
+      if (simulationList.length !== 0) {
+        dispatch(setSimulations(simulationList));
+        dispatch(setLoading(false));
+        dispatch(setCurrentPage(1));
+        dispatch(setShowChart(true));
+      } else {
+        dispatch(setLoading(false));
+      }
+    } catch (error) {
+      dispatch(setLoading(false));
+    }
   };
 
   return (

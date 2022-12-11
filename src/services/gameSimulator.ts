@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import { toast } from "react-toastify";
 import { ISimulationInfo } from "../models/gameSimulator";
 import config from "./config.json";
 
@@ -14,10 +15,15 @@ class MontyHallSimulatorService {
 
   //* Call API and get the result of simulations base on given data.
   async simulate(numberOfSimulations: number, changeTheChoice: boolean) {
-    const response = await this.http.get<ISimulationInfo[]>(
-      `/${numberOfSimulations}/${changeTheChoice}`
-    );
-    return response.data;
+    try {
+      const response = await this.http.get<ISimulationInfo[]>(
+        `/${numberOfSimulations}/${changeTheChoice}`
+      );
+      return response.data;
+    } catch (error) {
+      toast.error((error as AxiosError).message);
+      return [];
+    }
   }
 }
 
