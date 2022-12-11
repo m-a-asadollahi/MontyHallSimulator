@@ -5,8 +5,8 @@ export const PaginationContainerStyled = styled.div`
   display: flex;
   justify-content: center;
   justify-items: center;
-  /* padding: 1.5rem 0 0.7rem; */
   margin: 0.5rem;
+  background-color: transparent;
 `;
 
 export const Pagination = styled.div`
@@ -21,32 +21,6 @@ export const PaginationPanel = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-`;
-export const AllMapsButton = styled.button`
-  font-size: 1rem;
-  font-weight: bold;
-  width: 100%;
-  height: 100%;
-  top: -30px;
-  line-height: 100%;
-  border-radius: 15px 15px 0 0;
-  position: absolute;
-  z-index: 5;
-  border: solid #d1b000 1px;
-  cursor: pointer;
-  transition: all 200ms linear;
-  background-color: #d1b000;
-  color: #3a3e42;
-  padding-bottom: 30px;
-  vertical-align: top;
-
-  &:hover {
-    top: -40px;
-    border: solid #ecf1f2 1px;
-    background-color: #ecf1f2;
-    box-shadow: 0 0 15px #ecf1f2;
-    color: #020e1b;
-  }
 `;
 
 export const Counter = styled.div`
@@ -132,13 +106,10 @@ export const PaginationButton = styled.button<PaginationButtonTypes>`
   &:hover::after {
     transform: rotate(${(props) => props.hoverAngle}deg);
     background: #b3870f;
-    /* box-shadow: 0 0 15px 1px #b3870f; */
   }
   &:hover::before {
     transform: rotate(-${(props) => props.hoverAngle}deg);
     background: #b3870f;
-    /* box-shadow: 0 0 15px #ecf1f2; */
-    /* box-shadow: 0 0 15px 1px #645caa; */
   }
   &.disable {
     opacity: 0.3;

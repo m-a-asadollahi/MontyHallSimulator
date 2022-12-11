@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../store/storeHook";
+import { useAppDispatch } from "../../store/storeHook";
 import {
   setLoading,
   setSimulations,
@@ -31,7 +31,7 @@ const InputForm = () => {
     dispatch(setShowDetails(false));
     dispatch(setLoading(true));
 
-    const simulationList = await MontyHallSimulator.simulateGame(
+    const simulationList = await MontyHallSimulator.simulate(
       numberOfSimulations,
       changeTheChoise
     );

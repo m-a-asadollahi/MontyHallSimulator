@@ -8,4 +8,5 @@ export const AppContainerStyled = styled.main`
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
+  overflow: hidden;
 `;

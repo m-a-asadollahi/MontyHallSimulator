@@ -1,10 +1,11 @@
-import { IGameInfo } from "../../models/gameSimulator";
+import { ISimulationInfo } from "../../models/gameSimulator";
 
-export interface IGameSimulatorState {
+//* The simulator state interface.
+export interface ISimulatorState {
   loading: boolean;
   showChart: boolean;
   showDetails: boolean;
-  simulations: IGameInfo[];
+  simulations: ISimulationInfo[];
   numberOfWins: number;
   numberOfFailures: number;
 }

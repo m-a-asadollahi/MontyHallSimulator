@@ -1,7 +1,10 @@
+import React, { Suspense } from "react";
 import { useAppSelector } from "../../store/storeHook";
-import GameCard from "../gameCard/gameCard";
 import { getSimulationIndexOnPage, paginate } from "../utils/utils";
 import { ResultListStyled } from "./resultListStyles";
+import { ImpulseSpinner } from "react-spinners-kit";
+
+const GameCard = React.lazy(() => import("../gameCard/gameCard"));
 
 const ResultList = () => {
   const simulator = useAppSelector((state) => state.simulator);
@@ -16,15 +19,20 @@ const ResultList = () => {
   return (
     <ResultListStyled>
       {simulations.map((game, index) => (
-        <GameCard
+        <Suspense
+          fallback={<ImpulseSpinner frontColor="#645caa" backColor="#e0e0e0" />}
           key={index}
-          data={game}
-          index={getSimulationIndexOnPage(
-            index,
-            pagination.currentPage,
-            pagination.pageSize
-          )}
-        />
+        >
+          <GameCard
+            key={index}
+            data={game}
+            index={getSimulationIndexOnPage(
+              index,
+              pagination.currentPage,
+              pagination.pageSize
+            )}
+          />
+        </Suspense>
       ))}
     </ResultListStyled>
   );

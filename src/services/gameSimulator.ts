@@ -1,7 +1,9 @@
 import axios from "axios";
-import { IGameInfo, MontyHallSimulationDto } from "../models/gameSimulator";
+import { ISimulationInfo } from "../models/gameSimulator";
 import config from "./config.json";
 
+//* Simulator service.
+//* Config service and coonect to server.
 class MontyHallSimulatorService {
   http = axios.create({
     baseURL: config.apiUrl,
@@ -10,14 +12,10 @@ class MontyHallSimulatorService {
     },
   });
 
-  async simulateGame(numberOfGames: number, changeTheChoice: boolean) {
-    // const MontyHallSimulationDto: MontyHallSimulationDto = {
-    //   numberOfGames,
-    //   changeTheChoice,
-    // };
-    // console.log(MontyHallSimulationDto);
-    const response = await this.http.get<IGameInfo[]>(
-      `/${numberOfGames}/${changeTheChoice}`
+  //* Call API and get the result of simulations base on given data.
+  async simulate(numberOfSimulations: number, changeTheChoice: boolean) {
+    const response = await this.http.get<ISimulationInfo[]>(
+      `/${numberOfSimulations}/${changeTheChoice}`
     );
     return response.data;
   }

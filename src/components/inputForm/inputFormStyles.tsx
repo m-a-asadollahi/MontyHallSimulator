@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const InputFormStyled = styled.form`
+  box-sizing: border-box;
   border: 1px solid #ced4da;
-  padding: 0.7rem;
+  padding: 0.2rem 0.7rem;
   border-radius: 10px;
   box-shadow: 0px 1px 10px 1px #4d4c7d;
   display: flex;
@@ -12,6 +13,12 @@ export const InputFormStyled = styled.form`
   z-index: 10;
   background-color: #e0e0e0;
   font-size: 0.8rem;
+  width: 100%;
+
+  @media screen and (max-width: 660px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 export const Label = styled.label`
@@ -25,11 +32,7 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   display: block;
-  width: 100%;
   padding: 0.375rem 0.75rem;
-  /* font-size: 1rem;
-  font-weight: 400; */
-  /* line-height: 1.5; */
   color: #4d4c7d;
   font-weight: bold;
   background-color: #fff;
@@ -50,8 +53,6 @@ export const Select = styled.select`
   padding: 0.375rem 0.75rem;
   display: block;
   width: 100%;
-  /* font-size: 1rem;
-  font-weight: 400; */
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -72,7 +73,6 @@ export const Option = styled.option`
 
 export const FormGroup = styled.div`
   display: flex;
-  /* display: block; */
   width: 100%;
   flex-direction: column;
   justify-content: center;
@@ -96,5 +96,10 @@ export const Button = styled.button`
     font-weight: bold;
     background-color: #fdca40;
     box-shadow: 0px 0px 6px 1px #645caa;
+  }
+  @media screen and (max-width: 660px) {
+    width: 100%;
+    min-height: 30px;
+    margin-bottom: 0.5rem;
   }
 `;

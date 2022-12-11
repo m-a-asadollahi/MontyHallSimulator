@@ -1,4 +1,4 @@
-import { useAppSelector, useAppDispatch } from "../../../store/storeHook";
+import { useAppSelector } from "../../../store/storeHook";
 import { ToastContainer } from "react-toastify";
 import { AppContainerStyled } from "./appContainerStyles";
 import Loading from "../../loading/loading";

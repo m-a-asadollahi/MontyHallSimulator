@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IGameInfo } from "./../../models/gameSimulator";
-import { IGameSimulatorState } from "./types";
+import { ISimulationInfo } from "./../../models/gameSimulator";
+import { ISimulatorState } from "./types";
 import { counter } from "../../components/utils/utils";
 
-const initialState: IGameSimulatorState = {
+//* The state of simulator is set to the default values.
+const initialState: ISimulatorState = {
   loading: false,
   showChart: false,
   showDetails: false,
@@ -12,7 +13,8 @@ const initialState: IGameSimulatorState = {
   numberOfFailures: 0,
 };
 
-const gameSimulator = createSlice({
+//* Create simulator state
+const simulator = createSlice({
   name: "simulator",
   initialState,
   reducers: {
@@ -20,13 +22,16 @@ const gameSimulator = createSlice({
     setLoading: (simulator, action: PayloadAction<boolean>) => {
       simulator.loading = action.payload;
     },
+    //* set a flag for showing chart .
     setShowChart: (simulator, action: PayloadAction<boolean>) => {
       simulator.showChart = action.payload;
     },
+    //* set a flag for showing simulations details .
     setShowDetails: (simulator, action: PayloadAction<boolean>) => {
       simulator.showDetails = action.payload;
     },
-    setSimulations: (simulator, action: PayloadAction<IGameInfo[]>) => {
+    //* save simulations info in store.
+    setSimulations: (simulator, action: PayloadAction<ISimulationInfo[]>) => {
       simulator.simulations = action.payload;
       simulator.numberOfWins = counter(simulator.simulations, "Win");
       simulator.numberOfFailures = counter(simulator.simulations, "Failure");
@@ -35,8 +40,8 @@ const gameSimulator = createSlice({
 });
 
 //* Reducer
-export default gameSimulator.reducer;
+export default simulator.reducer;
 
 //* Actions
 export const { setLoading, setSimulations, setShowChart, setShowDetails } =
-  gameSimulator.actions;
+  simulator.actions;

@@ -31,14 +31,14 @@ const Chart = (props: SimulationChartProps) => {
   };
 
   return (
-    <PieChart width={400} height={400}>
+    <PieChart width={300} height={300}>
       <Pie
         data={props.data}
         cx="50%"
         cy="50%"
         labelLine={false}
         label={renderCustomizedLabel}
-        outerRadius={130}
+        outerRadius={120}
         fill="#8884d8"
         dataKey="value"
         className="pie"

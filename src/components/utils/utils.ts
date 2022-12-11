@@ -1,12 +1,16 @@
 import _ from "lodash";
-import { IGameInfo, TGameResult } from "../../models/gameSimulator";
+import { ISimulationInfo, TSimulationResult } from "../../models/gameSimulator";
 
-export const counter = (list: IGameInfo[], key: TGameResult) => {
-  return list.filter((info) => info.gameResult === key).length;
+//* Returns the number of simulations base on given key.
+//* This function returns the number of simulations that their result is win or failure.
+export const counter = (list: ISimulationInfo[], key: TSimulationResult) => {
+  return list.filter((info) => info.simulationResult === key).length;
 };
 
+//*   Returns an array of simulations.
+//* This function takes all simulations and pagination info and returns a slice of simulations array.
 export const paginate = (
-  items: any[],
+  items: ISimulationInfo[],
   pageNumber: number,
   pageSize: number
 ) => {
@@ -14,6 +18,7 @@ export const paginate = (
   return _(items).slice(startIndex).take(pageSize).value();
 };
 
+//* Returns the index of simulation base on current page number .
 export const getSimulationIndexOnPage = (
   index: number,
   pageNumber: number,

@@ -18,8 +18,8 @@ const ResultPanel = () => {
   };
   return (
     <ResultPanelStyled>
-      <ResultText>{`Number of wins : ${simulator.numberOfWins}`}</ResultText>
-      <ResultText>{`Number of Failures : ${simulator.numberOfFailures}`}</ResultText>
+      <ResultText>{`wins : ${simulator.numberOfWins}`}</ResultText>
+      <ResultText>{`Failures : ${simulator.numberOfFailures}`}</ResultText>
       <ResultButton id="actionBtn" onClick={handleClick}>
         {`${simulator.showDetails ? "Chart" : "Details"}`}
       </ResultButton>

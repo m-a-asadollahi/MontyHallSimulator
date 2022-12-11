@@ -14,7 +14,6 @@ export const GameCardStyled = styled.div<StyledCardType>`
   border-radius: 20px 20px 20px 20px;
   height: fit-content;
   box-shadow: 0px 2px 10px 2px #1d1d1d;
-  /* background-color: #fff; */
   background-image: linear-gradient(
     ${(props) => (props.gameResult === "Win" ? "#d8e68b" : "#f79bb0")},
     #fff,

@@ -8,7 +8,7 @@ const HeaderConbtainer = () => {
   const simulator = useAppSelector((state) => state.simulator);
   return (
     <HeaderContainerStyled>
-      <Name name="Monty Hall Simulation" />
+      <Name name="Monty Hall Simulator" />
       <InputForm />
       {(simulator.showChart || simulator.showDetails) && <ResultPanel />}
     </HeaderContainerStyled>

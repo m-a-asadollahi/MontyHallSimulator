@@ -6,7 +6,6 @@ import {
   GameInfo,
   GameInfoValue,
   GameInfos,
-  GameResult,
   GameResultText,
   GameCardContainer,
   GameIndex,
@@ -17,10 +16,10 @@ const GameCard = (props: gameCardTypes) => {
   const { data } = props;
   return (
     <GameCardContainer>
-      <GameResultText gameResult={data.gameResult}>
-        {data.gameResult}
+      <GameResultText gameResult={data.simulationResult}>
+        {data.simulationResult}
       </GameResultText>
-      <GameCardStyled gameResult={data.gameResult}>
+      <GameCardStyled gameResult={data.simulationResult}>
         <Doors>
           {data.doors.map((door, index) => (
             <Door key={index} caption={`Door ${index + 1}`} kind={door} />

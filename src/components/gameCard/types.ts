@@ -1,6 +1,9 @@
-import { IGameInfo, TGameResult } from "./../../models/gameSimulator";
+import {
+  ISimulationInfo,
+  TSimulationResult,
+} from "./../../models/gameSimulator";
 export interface gameCardTypes {
-  data: IGameInfo;
+  data: ISimulationInfo;
   index: number;
 }
 
