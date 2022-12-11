@@ -17,8 +17,6 @@ import {
   Button,
 } from "./inputFormStyles";
 import { setCurrentPage } from "../../store/dataPagination/paginationSlice";
-import { ISimulationInfo } from "../../models/gameSimulator";
-import { toast } from "react-toastify";
 
 const InputForm = () => {
   const dispatch = useAppDispatch();
