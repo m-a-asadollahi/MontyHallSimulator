@@ -1,7 +1,4 @@
-import {
-  ISimulationInfo,
-  TSimulationResult,
-} from "./../../models/gameSimulator";
+import { ISimulationInfo } from "./../../models/gameSimulator";
 export interface gameCardTypes {
   data: ISimulationInfo;
   index: number;

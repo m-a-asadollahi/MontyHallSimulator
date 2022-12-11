@@ -1,4 +1,4 @@
-import { GuardSpinner, MetroSpinner } from "react-spinners-kit";
+import { GuardSpinner } from "react-spinners-kit";
 import { LoadingText, LoadingWrapper } from "./loadingStyles";
 import { LoadingProsType } from "./types";
 
