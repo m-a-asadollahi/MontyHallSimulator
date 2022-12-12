@@ -18,6 +18,7 @@ export const InputFormStyled = styled.form`
   @media screen and (max-width: 660px) {
     flex-direction: column;
     justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -51,7 +52,6 @@ export const Input = styled.input`
 export const Select = styled.select`
   padding: 0.375rem 0.75rem;
   display: block;
-  width: 100%;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -74,6 +74,7 @@ export const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0.5rem 1rem;
+  width: 100%;
 `;
 
 export const ValidationText = styled.span`
