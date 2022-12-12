@@ -11,5 +11,6 @@ https://montyhall-simulator.surge.sh/
 - TypeScript
 - TypeScript React
 - Redux / Redux Toolkit
+- Axios
 - lodash
 - styled-components
