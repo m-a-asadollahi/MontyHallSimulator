@@ -9,7 +9,7 @@ export const InputFormStyled = styled.form`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   z-index: 10;
   background-color: #e0e0e0;
   font-size: 0.8rem;
@@ -31,7 +31,6 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  display: block;
   padding: 0.375rem 0.75rem;
   color: #4d4c7d;
   font-weight: bold;
@@ -73,10 +72,19 @@ export const Option = styled.option`
 
 export const FormGroup = styled.div`
   display: flex;
-  width: 100%;
   flex-direction: column;
-  justify-content: center;
   margin: 0.5rem 1rem;
+`;
+
+export const ValidationText = styled.span`
+  white-space: nowrap;
+  color: #fff;
+  background-color: #c40e45;
+  font-size: 0.75rem;
+  font-weight: 400;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 0.2rem 0 0.1rem;
 `;
 
 export const Button = styled.button`
@@ -89,6 +97,7 @@ export const Button = styled.button`
   padding: 0 0.5rem;
   cursor: pointer;
   transition: all 0.15s ease-in-out;
+  align-self: center;
 
   &:hover {
     border: none;

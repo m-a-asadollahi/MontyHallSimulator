@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useAppDispatch } from "../../store/storeHook";
 import {
   setLoading,
@@ -6,7 +6,7 @@ import {
   setShowChart,
   setShowDetails,
 } from "../../store/gameSimulator/simulatorSlice";
-import { InputFormStyled } from "./inputFormStyles";
+import { ValidationText, InputFormStyled } from "./inputFormStyles";
 import MontyHallSimulator from "../../services/gameSimulator";
 import {
   Input,
@@ -21,32 +21,63 @@ import { setCurrentPage } from "../../store/dataPagination/paginationSlice";
 const InputForm = () => {
   const dispatch = useAppDispatch();
 
-  const [numberOfSimulations, setNumberOfSimulations] = useState(0);
+  const [numberOfSimulations, setNumberOfSimulations] = useState("1");
   const [changeTheChoise, setChangeTheChoise] = useState(false);
+  const [validation, setValidation] = useState({ error: false, message: "" });
+  const inputText = useRef<HTMLInputElement>(null);
 
+  //* Get form data and call API
   const submitForm = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    try {
-      dispatch(setShowChart(false));
-      dispatch(setShowDetails(false));
-      dispatch(setLoading(true));
+    if (validateInput(numberOfSimulations)) {
+      try {
+        dispatch(setShowChart(false));
+        dispatch(setShowDetails(false));
+        dispatch(setLoading(true));
 
-      const simulationList = await MontyHallSimulator.simulate(
-        numberOfSimulations,
-        changeTheChoise
-      );
-      if (simulationList.length !== 0) {
-        dispatch(setSimulations(simulationList));
-        dispatch(setLoading(false));
-        dispatch(setCurrentPage(1));
-        dispatch(setShowChart(true));
-      } else {
+        const simulationList = await MontyHallSimulator.simulate(
+          parseInt(numberOfSimulations),
+          changeTheChoise
+        );
+        if (simulationList.length !== 0) {
+          dispatch(setSimulations(simulationList));
+          dispatch(setLoading(false));
+          dispatch(setCurrentPage(1));
+          dispatch(setShowChart(true));
+        } else {
+          dispatch(setLoading(false));
+        }
+      } catch (error) {
         dispatch(setLoading(false));
       }
-    } catch (error) {
-      dispatch(setLoading(false));
     }
+  };
+
+  //* Validate input value
+  const validateInput = (value: string) => {
+    const simulationsCount = value === "" ? 0 : value;
+    if (simulationsCount > 100000 || simulationsCount < 1) {
+      inputText.current?.focus();
+      setValidation({
+        error: true,
+        message:
+          simulationsCount > 100000
+            ? "Value must be less than 100000."
+            : "Value must be grather than zero",
+      });
+      return false;
+    } else {
+      setValidation({ error: false, message: "" });
+      return true;
+    }
+  };
+
+  //* Handle input value
+  const handleChangeValue = (value: string) => {
+    setValidation({ error: false, message: "" });
+    setNumberOfSimulations(value);
+    validateInput(value);
   };
 
   return (
@@ -54,14 +85,19 @@ const InputForm = () => {
       <FormGroup>
         <Label htmlFor="numberOfSimulations">Number of simulations: </Label>
         <Input
+          ref={inputText}
           type="number"
           name="numberOfSimulations"
           id="numberOfSimulations"
-          placeholder="0"
+          placeholder="Please enter a number"
           value={numberOfSimulations}
-          onChange={(e) => setNumberOfSimulations(parseInt(e.target.value))}
+          onChange={(e) => handleChangeValue(e.target.value)}
         />
+        {validation.error && (
+          <ValidationText>{validation.message}</ValidationText>
+        )}
       </FormGroup>
+
       <FormGroup>
         <Label htmlFor="changeDoor">Change door: </Label>
         <Select
@@ -76,6 +112,7 @@ const InputForm = () => {
           <Option value="no">No</Option>
         </Select>
       </FormGroup>
+
       <Button>Play</Button>
     </InputFormStyled>
   );
